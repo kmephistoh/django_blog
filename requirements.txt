@@ -1,0 +1,9 @@
+django
+django-haystack
+whoosh
+jieba
+django-grappelli
+django-markdown-deux
+redis
+django-redis-cache
+raven

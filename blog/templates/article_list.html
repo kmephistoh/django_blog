@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load markdown_deux_tags %}
+{% block content %}
+
+    {% for article in articles %}
+      <h2>{{ article.title }}</h2>
+      <a href="/blog/count_like" class="css_btn_like"> like|{{ article.likes }} </a> {{ article.pub_date}}
+      <hr>
+      <div>
+        {{ article.content|markdown }}
+      </div>
+    {% endfor %}
+
+    <ul class="pagination">
+      {% if articles.has_previous %}
+        <li><a href="?page={{ articles.previous_page_number }}">&laquo;</a></li>
+      {% endif %}
+      <li class="active"><a href="?page={{ articles.number }}">{{ articles.number }}</a></li>
+      <li><a href="?page={{ articles.number }}">{{ articles.number }}</a></li>
+      {% if articles.has_next %}
+        <li><a href="?page={{ articles.next_page_number }}">&raquo;</a></li>
+          {% endif %}
+    </ul>
+
+{% endblock %}

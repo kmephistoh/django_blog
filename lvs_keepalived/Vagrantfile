@@ -1,0 +1,15 @@
+Vagrant::Config.run do |config|
+  app_servers = { :DR1 => '10.10.10.10',
+                  :DR2 => '10.10.10.11',
+                  :app1 => '10.10.10.14',
+                  :app2 => '10.10.10.15'
+                }
+
+  app_servers.each do |app_server_name, app_server_ip|
+    config.vm.define app_server_name do |app_config|
+      app_config.vm.box = "Centos6.5"
+      app_config.vm.host_name = app_server_name.to_s
+      app_config.vm.network :hostonly, app_server_ip
+    end
+  end
+end

@@ -1,0 +1,19 @@
+.messages {
+    /* Your code */
+    background: pink
+}
+ 
+.messages .success {
+    /* Your code, e.g. background: green */
+    background: green
+}
+ 
+.messages .error {
+    /* Your code, e.g. background: black */
+    background: red
+}
+ 
+.messages .warning {
+    /* Your code, e.g. background: red */
+    background: yellow
+}
