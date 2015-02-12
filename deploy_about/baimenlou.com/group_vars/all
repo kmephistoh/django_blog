@@ -12,3 +12,4 @@ allow_ip_dir: /etc/nginx/allow_ip
 gunicorn_user: nginx
 gunicorn_group: nginx
 gunicorn_num_workers: 4
+gunicorn_max_requests: 5000
