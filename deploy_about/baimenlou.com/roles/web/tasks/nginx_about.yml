@@ -1,5 +1,6 @@
 ---
-- git: repo=ssh://{{repository}} dest={{deploy_dir}}
+#- git: repo=ssh://{{repository}} dest={{deploy_dir}}
+- git: repo={{repository}} dest={{deploy_dir}}
 
 - name: mkdir project log dir and allow_ip dir
   command: mkdir -p {{project_log_dir}} {{allow_ip_dir}}
