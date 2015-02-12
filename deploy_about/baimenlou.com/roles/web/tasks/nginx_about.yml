@@ -1,0 +1,12 @@
+---
+- git: repo=ssh://{{repository}} dest={{deploy_dir}}
+
+- name: mkdir project log dir and allow_ip dir
+  command: mkdir -p {{project_log_dir}} {{allow_ip_dir}}
+
+- name: Configure allow_ip
+  template: src=allow_ip dest={{allow_ip_dir}}
+
+- name: Configure nginx file
+  template: src=baimenlou.com.conf.j2 dest=/etc/nginx/conf.d/{{server_name}}.conf
+  notify: restart nginx 
