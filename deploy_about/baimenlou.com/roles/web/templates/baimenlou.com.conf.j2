@@ -1,22 +1,39 @@
+upstream baimenlou {
+    server unix:/tmp/gunicorn.sock fail_timeout=0;
+}
+
 server {
-        listen   80; 
-        server_name  {{ server_name }};
+    listen   80; 
+    server_name  {{ server_name }};
 
-        access_log /var/log/nginx/{{ server_name }}/access.log;
-        error_log /var/log/nginx/{{ server_name }}/error.log;
+    access_log /var/log/nginx/{{ server_name }}/access.log;
+    error_log /var/log/nginx/{{ server_name }}/error.log;
 
-        root   {{deploy_dir}}/www;
-        index index.php;
+    location /nginx_status {
+        stub_status on;
+        access_log   off;
+        allow 127.0.0.1;
+        deny all;
+    }
 
-        location / {
-            include function/allow_public_ip;
-        }
+    location /static/ {
+        alias   {{deploy_dir}}/statics/;
+    }
 
-    	location ~ \.php$ {
-    	    fastcgi_pass   127.0.0.1:9000;
-            fastcgi_read_timeout 3600;
-            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-    	    include        fastcgi_params;
-    	}
+    location /media/ {
+        alias   {{deploy_dir}}/media/;
+    }
 
+    location / {
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        proxy_pass http://baimenlou;
+    }
+
+
+    #error_page 500 502 503 504 /500.html;
+    #location = /500.html {
+    #    root {{deploy_dir}}/static/;
+    #}
 }  
