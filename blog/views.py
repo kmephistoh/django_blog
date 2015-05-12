@@ -6,9 +6,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from blog.models import * 
 
 
-def index(request):
-    return render(request, "index.html")
-
 def about(request):
     return render(request, "about.html")
 
@@ -27,7 +24,7 @@ def login_view(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return redirect('/blog/home')
+                return redirect('^$')
             else:
                 return HttpResponse("Your account is disabled.")
         else:
@@ -49,15 +46,16 @@ def article_list(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         articles = paginator.page(paginator.num_pages)
         
-    return render(request, 'article_list.html', 
+    return render(request, 'home.html', 
         {"articles": articles}
         )
+
+def article_detail(request, id):
+    article = Article.objects.get(id=id)
+    return render(request, 'article.html', {"article":article})
 
 def count_like(request):
     # messages.success(request, 'Thank you!')
     messages.error(request, "Don't repeat voting" )
     return render(request, "index.html", 
         )
-
-
-

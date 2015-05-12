@@ -3,11 +3,14 @@
 {% block content %}
 
     {% for article in articles %}
-      <h2>{{ article.title }}</h2>
-      <a href="/blog/count_like" class="css_btn_like"> like|{{ article.likes }} </a> {{ article.pub_date}}
+      <h2><a href="{% url 'article_detail' id=article.id %}">{{ article.title }}</h2>
+      <a href="{% url 'count_like' %}" class="css_btn_like"> like|{{ article.likes }} </a> {{ article.pub_date|date:'Y / m / d'}}
       <hr>
       <div>
         {{ article.content|markdown }}
+                    <a class="read-more" href="{% url 'article_detail' id=article.id %}">
+                        Read More <i class="fa fa-arrow-right"></i>
+                    </a>
       </div>
     {% endfor %}
 
