@@ -5,7 +5,7 @@
     <hr>
     {% for result in page.object_list %}
         <p>
-            <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>
+            <a href="{% url 'article_detail' id=result.object.id %}">{{ result.object.title}}</a>
         </p>
     {% empty %}
         <p>no results found.</p>
