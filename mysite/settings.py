@@ -129,4 +129,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-STATIC_ROOT = '/var/www/baimenlou.com/static/'
+STATIC_ROOT = '/var/www/mephisto.me/static/'
