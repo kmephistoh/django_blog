@@ -54,8 +54,13 @@ def article_detail(request, id):
     article = Article.objects.get(id=id)
     return render(request, 'article.html', {"article":article})
 
-def count_like(request):
-    # messages.success(request, 'Thank you!')
-    messages.error(request, "Don't repeat voting" )
-    return render(request, "index.html", 
-        )
+def count_like(request, id):
+    article = Article.objects.get(id=id)
+    if request.session.get('has_liked', False):
+        messages.error(request, "Don't repeat voting" )
+        return HttpResponse("You've already liked")
+    article.likes += 1
+    article.save()
+    request.session['has_liked'] = True
+    messages.success(request, 'Thank you!')
+    return HttpResponse('Thank you for your like!')

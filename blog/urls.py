@@ -12,5 +12,5 @@ urlpatterns = patterns('',
     url(r'^about$', views.about, name='about'),
     url(r'^contact$', views.contact, name='contact'),
     url(r'^article/(?P<id>\d+)/$', views.article_detail, name='article_detail'),
-    url(r'^count_like$', views.count_like, name='count_like'),
+    url(r'^count_like/(?P<id>\d+)/$', views.count_like, name='count_like'),
 )
