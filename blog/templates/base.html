@@ -13,10 +13,10 @@
     	<!-- Optional theme -->
     	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
         <!-- Custom styles for this template -->
-        <link rel="stylesheet" href="/static/blog/css/sticky-footer.css">
-        <link rel="stylesheet" href="/static/blog/css/base.css">
-        <link rel="stylesheet" href="/static/blog/css/btn-like.css">
-        <link rel="stylesheet" href="/static/blog/css/messages.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}blog/css/sticky-footer.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}blog/css/base.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}blog/css/btn-like.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}blog/css/messages.css">
     </head>
 
     <body>
@@ -53,8 +53,7 @@
         </div>
 
         <a class="fork-me" href="https://github.com/kmephistoh/django_blog">
-            {% load staticfiles %}
-            <img style="position: absolute; top: 0; right: 0; border: 0; z-index:1040;" src="/static/blog/images/forkme-right-orange.png" alt="Fork me on GitHub">
+            <img style="position: absolute; top: 0; right: 0; border: 0; z-index:1040;" src="{{ STATIC_URL }}blog/images/forkme-right-orange.png" alt="Fork me on GitHub">
         </a>
 
 
